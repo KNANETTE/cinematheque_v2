@@ -1,0 +1,35 @@
+DROP DATABASE IF EXISTS <db_name>;
+CREATE DATABASE <db_name>;
+
+use <db_name>;
+
+CREATE TABLE users(
+    id INT UNSIGNED AUTO_INCREMENT,
+    fullname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_user PRIMARY KEY(id),
+    UNIQUE KEY unique_email (email)
+);
+
+CREATE TABLE purchases(
+    id INT UNSIGNED AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    movie_id INT UNSIGNED NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_purchase 
+        PRIMARY KEY(id),
+    CONSTRAINT fk_user_perchase 
+        FOREIGN KEY(user_id) 
+        REFERENCES user(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE USER '<db_user>'@'localhost' IDENTIFIED BY "<password>";
+GRANT ALL PRIVILEGES ON <db_name>.* to '<db_user>'@'localhost';
