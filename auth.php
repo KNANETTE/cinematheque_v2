@@ -48,10 +48,11 @@ if ($action === "register") {
             $password,
         ]);
 
-        $get_query = $pdo->prepare("SELECT fullname, username, email, created_at, updated_at FROM users WHERE email = ?");
+        $get_query = $pdo->prepare("SELECT * FROM users WHERE email = ?");
         $get_query->execute([$data['email']]);
         $user = $get_query->fetch();
 
+        unset($user["password"]);
         $_SESSION["authenticated"] = $user;
         echo json_encode(["success" => true]);
         exit;

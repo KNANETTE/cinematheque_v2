@@ -28,7 +28,7 @@
 
                 <div class="mt-4">
                     <button class="btn btn-secondary" onclick="history.back()">← Retour</button>
-                    <button class="btn btn-primary">Ajouter au panier</button>
+                    <button class="btn btn-primary" onclick="addToCart(this)">Ajouter au panier</button>
                 </div>
             </div>
         </div>
@@ -36,12 +36,6 @@
         <hr>
 
         <div id="movie-overview"></div>
-
-        <!-- OPTIONAL: Similar Movies -->
-        <!-- <h3 class="fw-semibold mb-3">Similar Movies</h3>
-        <div id="similar-movies" class="row g-4"> -->
-            <!-- JS will inject cards here -->
-        <!-- </div> -->
 
     </div>
 </section>
